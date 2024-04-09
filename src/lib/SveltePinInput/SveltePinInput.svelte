@@ -14,11 +14,12 @@
   export let isInputHidden = true;
   export let disabled = false;
   export let isValid = false;
+  export let placeholder = [];
   
 	let fields = [];
 
 	for (let i = 0; i < size; i++) {
-		fields[i] = { id: i, value: '' };
+		fields[i] = { id: i, value: '', placeholder: placeholder[i]};
 	}
 
 	$: value = fields.map((input) => input.value).join('');
@@ -73,6 +74,7 @@
       type='password'
       maxlength="1"
       id={field.id}
+      placeholder="{field.placeholder}"
       on:input={(e) => handleInput(e, field.id)}
       on:keyup={handleChange}
       on:focus={(e) => e.target.select()}
@@ -90,6 +92,7 @@
       type='text'
       maxlength="1"
       id={field.id}
+      placeholder="{field.placeholder}"
       on:input={(e) => handleInput(e, field.id)}
       on:keyup={handleChange}
       on:focus={(e) => e.target.select()}
